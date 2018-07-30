@@ -1,0 +1,22 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:9.5.12-alpine
+    container_name: actionmonitor_db
+    restart: always
+    environment:
+      POSTGRES_DB: actionmonitor
+      POSTGRES_USER: actionmonitor
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    container_name: actionmonitor_adminer
+    restart: always
+    ports:
+      - 9000:8080
+
