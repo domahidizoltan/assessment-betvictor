@@ -1,0 +1,8 @@
+messaging:
+  topic:
+    eventPattern: "__keyevent@*"
+    destination: "/topic/events"
+
+logging:
+  level:
+    bvtech: DEBUG

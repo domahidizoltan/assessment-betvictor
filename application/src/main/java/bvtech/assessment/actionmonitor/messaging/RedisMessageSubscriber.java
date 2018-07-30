@@ -12,10 +12,10 @@ public class RedisMessageSubscriber implements MessageListener {
 
     private static final String DELIMITER = ":";
 
-    private EventNotificationService eventNotificationServiceMock;
+    private EventNotificationService eventNotificationService;
 
-    public RedisMessageSubscriber(final EventNotificationService eventNotificationServiceMock) {
-        this.eventNotificationServiceMock = eventNotificationServiceMock;
+    public RedisMessageSubscriber(final EventNotificationService eventNotificationService) {
+        this.eventNotificationService = eventNotificationService;
     }
 
     @Override
@@ -25,13 +25,13 @@ public class RedisMessageSubscriber implements MessageListener {
         log.debug("Received event [channel: {}, body: {}]", channel, body);
 
         Optional<String> operation = parseOperation(channel);
-        operation.ifPresent(op -> eventNotificationServiceMock.eventNotification(op, body));
+        operation.ifPresent(op -> eventNotificationService.eventNotification(op, body));
     }
 
     private Optional<String> parseOperation(final String channel) {
         Optional<String> operation = Optional.empty();
 
-        if (channel.indexOf(DELIMITER) > -1) {
+        if (channel.contains(DELIMITER)) {
             operation = Optional.of(channel.split(DELIMITER)[1]);
         } else {
             log.error("Could not parse operation from channel " + channel);
