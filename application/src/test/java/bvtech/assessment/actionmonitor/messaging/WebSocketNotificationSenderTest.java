@@ -1,7 +1,7 @@
-package bvtech.assessment.actionmonitor.notification;
+package bvtech.assessment.actionmonitor.messaging;
 
-import bvtech.assessment.actionmonitor.messaging.NotificationSender;
-import bvtech.assessment.actionmonitor.messaging.WebSocketNotificationSender;
+import bvtech.assessment.actionmonitor.notification.EventNotificationDto;
+import bvtech.assessment.actionmonitor.notification.EventType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

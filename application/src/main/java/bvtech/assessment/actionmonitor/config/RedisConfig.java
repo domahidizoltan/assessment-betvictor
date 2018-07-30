@@ -14,7 +14,7 @@ public class RedisConfig {
 
     @Bean
     MessageListener redisMessageSubscriber() {
-        return new RedisMessageSubscriber();
+        return new RedisMessageSubscriber(null);
     }
 
     @Bean
