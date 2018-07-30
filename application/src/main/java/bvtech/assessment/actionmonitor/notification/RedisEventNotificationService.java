@@ -4,8 +4,9 @@ import bvtech.assessment.actionmonitor.messaging.NotificationSender;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.MediaType;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.support.GenericMessage;
+import org.springframework.messaging.support.MessageBuilder;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -56,7 +57,10 @@ public class RedisEventNotificationService implements EventNotificationService {
 
         try {
             String json = objectMapper.writeValueAsString(dto);
-            message = Optional.of(new GenericMessage<>(json));
+            Message<String> msg = MessageBuilder.withPayload(json)
+                .setHeaderIfAbsent("content-type", MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .build();
+            message = Optional.of(msg);
         } catch (JsonProcessingException e) {
             log.error("Could not convert DTO to json: " + dto.toString(), e);
         }
