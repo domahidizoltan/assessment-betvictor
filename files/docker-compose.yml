@@ -2,21 +2,23 @@ version: '3.1'
 
 services:
 
-  db:
-    image: postgres:9.5.12-alpine
-    container_name: actionmonitor_db
+  redis:
+    image: redis:4.0.10-alpine
+    container_name: actionmonitor_redis
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - ${PWD}/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+
+  commander:
+    image: rediscommander/redis-commander:latest
+    container_name: actionmonitor_commander
     restart: always
     environment:
-      POSTGRES_DB: actionmonitor
-      POSTGRES_USER: actionmonitor
-      POSTGRES_PASSWORD: pass
+      - REDIS_HOSTS=local:redis:6379
     ports:
-      - 5432:5432
-
-  adminer:
-    image: adminer
-    container_name: actionmonitor_adminer
-    restart: always
-    ports:
-      - 9000:8080
-
+      - 8081:8081
+    depends_on:
+      - redis
