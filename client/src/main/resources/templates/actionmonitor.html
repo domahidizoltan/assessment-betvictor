@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>BetVictor assessment - Action monitor</title>
+
+    <script th:inline="javascript">
+        var wsEndpoint = /*[[${wsEndpoint}]]*/
+        var wsTopic = /*[[${wsTopic}]]*/
+    </script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/sockjs-client-1.1.4.min.js"></script>
+    <script src="js/stompjs-2.3.3.min.js"></script>
+    <script src="js/scripts.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <div id="connection-status"></div>
+    <div id="notifications" style="margin:20px; font-weight:bold;"></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+messaging:
+  url: http://localhost:9000
+  websocket-endpoint: /betvictor-websocket
+  topic: /topic/events
