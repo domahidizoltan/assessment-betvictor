@@ -12,10 +12,14 @@ public enum RedisEvent {
     RENAME_FROM (UPDATE),
     RENAME_TO (UPDATE),
     LPUSH (CREATE, UPDATE),
+    RPUSH (CREATE, UPDATE),
     SADD (CREATE, UPDATE),
     SET (CREATE, UPDATE),
     LSET (UPDATE),
+    RSET (UPDATE),
     LREM (UPDATE),
+    RREM (UPDATE),
+    SREM (DELETE),
     DEL (DELETE);
 
     private final List<EventType> eventTypes = new ArrayList<>();
