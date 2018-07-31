@@ -35,6 +35,13 @@ public class RedisEventNotificationIntTest {
 
     @Value("${local.server.port}")
     private int port;
+
+    @Value("${messaging.topic.destination}")
+    private String topic;
+
+    @Value("${messaging.websocket-endpoint}")
+    private String websocketEndpoint;
+
     private static final String TEST_KEY = "betvictor#testKey";
 
     private final CountDownLatch countDownLatch = new CountDownLatch(2);
@@ -48,8 +55,8 @@ public class RedisEventNotificationIntTest {
     @Test
     public void shouldSendNotificationsAboutObjectCreationAndDeletion() throws InterruptedException, ExecutionException, TimeoutException {
         results.clear();
-        String url = "ws://localhost:"+port+"/betvictor-websocket";
-        createWSClient(url, "/topic/events");
+        String url = "ws://localhost:" + port + websocketEndpoint;
+        createWSClient(url, topic);
 
         redisTemplate.boundSetOps(TEST_KEY).add("anyValue");
         redisTemplate.delete(TEST_KEY);

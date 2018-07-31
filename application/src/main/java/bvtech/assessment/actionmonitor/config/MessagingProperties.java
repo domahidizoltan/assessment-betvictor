@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 public class MessagingProperties {
 
+    private String websocketEndpoint;
     private Topic topic;
 
     @Data

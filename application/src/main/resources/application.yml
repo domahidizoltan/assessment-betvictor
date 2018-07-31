@@ -1,7 +1,11 @@
 messaging:
   topic:
-    eventPattern: "__keyevent@*"
-    destination: "/topic/events"
+    eventPattern: __keyevent@*
+    destination: /topic/events
+  websocket-endpoint: /betvictor-websocket
+
+server:
+  port: 9000
 
 logging:
   level:
