@@ -1,4 +1,8 @@
-messaging:
+notificationServer:
   url: http://localhost:9000
-  websocket-endpoint: /betvictor-websocket
-  topic: /topic/events
+  webSocket:
+    endpoint: /betvictor-websocket
+    topic: /topic/events
+  actuator:
+    endpoint: /actuator
+    pollInterval: 5000

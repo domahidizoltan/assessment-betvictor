@@ -32,4 +32,9 @@ dependencies {
 		"org.springframework.boot:spring-boot-starter-thymeleaf",
 		"org.springframework.boot:spring-boot-devtools"
 	)
+
+	compileOnly "org.projectlombok:lombok:1.18.2"
+
+	testCompile "org.springframework.boot:spring-boot-starter-test"
+
 }

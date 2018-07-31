@@ -36,13 +36,21 @@ function connectWSCallback(frame) {
 }
 
 function errorWSCallback(error) {
-     connectionStatus('Could not connect to websocket. Please refresh the page.');
+     connectionStatus('<span style="red">Could not connect to websocket. Please refresh the page.</span>');
 }
 
 function connectionStatus(status) {
     $('#connection-status').html(status);
 }
 
+function getServerInfo() {
+    $.get("/notification-server-info", function(data) {
+        $('#server-info').html(data);
+    });
+    setTimeout(getServerInfo, statusPollInterval);
+}
+
 $(document).ready(function (){
     initWSConnection();
+    getServerInfo();
 });
