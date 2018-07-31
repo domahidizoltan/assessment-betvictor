@@ -21,6 +21,10 @@ group = 'bvtech.assessment'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+processResources {
+    expand(project.properties)
+}
+
 repositories {
 	mavenCentral()
 }
@@ -29,7 +33,8 @@ repositories {
 dependencies {
 	compile(
         "org.springframework.boot:spring-boot-starter-data-redis",
-        "org.springframework.boot:spring-boot-starter-websocket"
+        "org.springframework.boot:spring-boot-starter-websocket",
+        "org.springframework.boot:spring-boot-starter-actuator"
 	)
 
     compileOnly "org.projectlombok:lombok:1.18.2"

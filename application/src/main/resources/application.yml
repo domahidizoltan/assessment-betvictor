@@ -7,6 +7,10 @@ messaging:
 server:
   port: 9000
 
+info:
+  app:
+    version: ${version}
+
 logging:
   level:
     bvtech: DEBUG
